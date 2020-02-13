@@ -1,3 +1,4 @@
+
 package com.prueba.app.gml.models.service;
 
 import com.prueba.app.gml.models.dao.IClienteDao;
@@ -17,7 +18,7 @@ public class ClienteServiceImpl implements IClienteService {
     @Override
     @Transactional
     public List<Cliente> findAll() {
-        return clienteDao.findAll();
+        return (List<Cliente>) clienteDao.findAll();
     }
 
     @Override
@@ -29,12 +30,12 @@ public class ClienteServiceImpl implements IClienteService {
     @Override
     @Transactional
     public Cliente findOne(Long id) {
-        return clienteDao.findOne(id);
+        return clienteDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void delete(Long id) {
-        clienteDao.delete(id);
+        clienteDao.deleteById(id);
     }
 }
